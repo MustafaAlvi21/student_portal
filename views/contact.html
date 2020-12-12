@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+            <!--             B o o t s t r a p  4              -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+                <!--             F i r e b a s e              -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-analytics.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+</head>
+<style>
+   body {
+		height: 100%;
+		background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/50598/concrete-wall-background.jpg) center center fixed;
+		background-size: cover;
+}
+/* -------------------------------------- */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  /* background: #ddd; */
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  color: rgba(195, 195, 195, 0.719);
+}
+.main {
+  padding: 16px;
+  margin-top: 30px;
+  /* hei  ght: 1500px; Used in this example to enable scrolling */
+}
+
+/* ---------------------------------------- */
+
+.footer {
+  padding-top: 15px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: #f2f2f2;
+  text-align: center;
+}
+
+/* ------------------------------- */
+
+
+.shade {
+		overflow: auto;
+		/* position: absolute; */
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		/* background-image: linear-gradient( 150deg, rgba(0, 0, 0, 0.65), transparent); */
+}
+
+.blackboard {
+		position: relative;
+		/* margin: 5% auto; */
+		border: tan solid 12px;
+		border-top: #bda27e solid 12px;
+		border-left: #b19876 solid 12px;
+		border-bottom: #c9ad86 solid 12px;
+		box-shadow: 0px 0px 6px 5px rgba(58, 18, 13, 0), 0px 0px 0px 2px #c2a782, 0px 0px 0px 4px #a58e6f, 3px 4px 8px 5px rgba(0, 0, 0, 0.5);
+		background-image: radial-gradient( circle at left 30%, rgba(34, 34, 34, 0.3), rgba(34, 34, 34, 0.3) 80px, rgba(34, 34, 34, 0.5) 100px, rgba(51, 51, 51, 0.5) 160px, rgba(51, 51, 51, 0.5)), linear-gradient( 215deg, transparent, transparent 100px, #222 260px, #222 320px, transparent), radial-gradient( circle at right, #111, rgba(51, 51, 51, 1));
+		background-color: #333;
+}
+
+.blackboard:before {
+		box-sizing: border-box;
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-image: linear-gradient( 175deg, transparent, transparent 40px, rgba(120, 120, 120, 0.1) 100px, rgba(120, 120, 120, 0.1) 110px, transparent 220px, transparent), linear-gradient( 200deg, transparent 80%, rgba(50, 50, 50, 0.3)), radial-gradient( ellipse at right bottom, transparent, transparent 200px, rgba(80, 80, 80, 0.1) 260px, rgba(80, 80, 80, 0.1) 320px, transparent 400px, transparent);
+		border: #2c2c2c solid 2px;
+		content: "Message Box";
+		font-family: 'Permanent Marker', cursive;
+		font-size: 2.2em;
+		color: rgba(238, 238, 238, 0.7);
+		text-align: center;
+    padding-top: 20px;
+}
+
+.form {
+		padding: 70px 20px 20px;
+}
+
+p {
+		position: relative;
+		/* margin-bottom: 0.5em; */
+}
+
+label {
+		vertical-align: middle;
+		font-family: 'Permanent Marker', cursive;
+		font-size: 1em;
+		color: rgba(238, 238, 238, 0.7);
+}
+
+p:nth-of-type(5) > label {
+		vertical-align: top;
+}
+
+input,
+textarea {
+		vertical-align: middle;
+		padding-left: 10px;
+		background: none;
+		border:none;
+		font-family: 'Permanent Marker', cursive;
+		font-size: 1em;
+		color: rgba(238, 238, 238, 0.8);
+		line-height: .6em;
+		outline: none;
+}
+
+textarea {
+		height: 120px;
+		font-size: 1em;
+		line-height: 1em;
+		resize: none;
+}
+
+input[type="submit"] {
+		cursor: pointer;
+		color: rgba(238, 238, 238, 0.7);
+		line-height: 1em;
+		padding: 0;
+}
+
+input[type="submit"]:focus {
+		background: rgba(238, 238, 238, 0.2);
+		color: rgba(238, 238, 238, 0.2);
+}
+
+::-moz-selection {
+		background: rgba(238, 238, 238, 0.2);
+		color: rgba(238, 238, 238, 0.2);
+		text-shadow: none;
+}
+
+::selection {
+		background: rgba(238, 238, 238, 0.4);
+		color: rgba(238, 238, 238, 0.3);
+		text-shadow: none;
+}
+/* --------------------------------------------- */
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+
+</style>
+<body>
+  
+  <!--       c a r o u s e l        -->
+  <br> <br> <br>
+
+  <div class="main">
+    
+<h2 style="display: block;">Chat Messages</h2>
+
+<div  style="margin-bottom: 55px; display: flex; justify-content: space-between;">
+    <div class="row">
+<div class="col-md-7 col-sm-12 "  id="msgBox" style="display: flex; flex-wrap: wrap;  ">
+
+    <div class="container">
+        <h5>From: <h6>  </h6> </h5>
+        <p>Hello. How are you today?</p>
+        <span class="time-right">11:00</span>
+    </div>
+
+
+</div>
+
+<div class="col-md-5 col-sm-12" >
+
+  <div class="shade">
+		<div class="blackboard">
+				<div class="form">
+          <form  id="contactForm" style="    margin-top: 20px;">
+						<p>
+              <label>Email: </label> &nbsp; &nbsp;  &nbsp;  
+              <input style="border: 2px solid gray; width: 250px;" type="email" name="msgEmail" id="msgEmail"/>
+						</p>
+						<p>
+              <label>Message: </label>
+							<textarea style="border: 2px solid gray; "  id="message" cols="25" rows="5"></textarea>  
+            </p>
+            
+            <div style="display: flex; justify-content: space-around; font-size: xx-large; font-weight: 500;">
+              <p class="wipeout">
+                <input type="submit" onclick="submitForm()"  />
+             </p>
+         </div>
+          </form>
+				</div>
+		</div>
+</div>
+</div>
+  </div>
+  </div>
+</div>
+
+    <div class="navbar">
+      <div style="margin: 0px auto; width: 90%; display: flex; justify-content: space-around;">
+        <a href="home.html">Home</a>
+        <a href="users.html">Users</a>
+        <a href="contact.html">Contact</a>
+        <div>
+          <div style="justify-content: space-around; max-height: 20px;">
+            <span style="color: #f2f2f2;"> <p style="display: inline-block; font-size: me;color: #f2f2f2;" id="loginUser"></p></span>    
+          </div>
+          <div style="display: flex; justify-content: space-around;  max-height: 30px;">
+            <a id="logout-btn" style="padding-top: 0px;"> Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p> © 2020 Musto developers All rights reserved.</p>
+    </div>
+
+
+<script src="js/app.js"></script>
+
+<script>
+firebase.auth().onAuthStateChanged(function(user, userLogin) {
+        if (user) {
+          document.querySelector('#loginUser').innerHTML =  user.email;
+            console.log('user is signed in.')
+            localStorage.setItem('userLogin', user.email)
+            
+        } else {
+            console.log('user is signed out.')
+            window.location.href = 'login.html';  
+        }
+    });
+
+
+  
+
+
+var messageRef = firebase.database().ref('messages');
+
+document.getElementById('msgEmail').value= localStorage.getItem('userLogin')
+
+function submitForm(){
+    var msgEmail =  getInputVal('msgEmail')
+    var message = getInputVal('message')
+    var time = Date().toLocaleString()
+    console.log(msgEmail)
+    console.log(message)
+    saveMessage(msgEmail, message, time)
+}
+    
+function getInputVal(id){
+    return document.getElementById(id).value;
+}
+
+function saveMessage(msgEmail, message, time){
+    var newMessageRef = messageRef.push();
+    newMessageRef.set({
+        'msgEmail' : msgEmail,
+        'message' : message,
+        'time' : time,
+    });
+    window.location.href = 'contact.html';
+}
+
+    // Get a reference to the database service
+    
+var ref = firebase.database().ref('messages');
+// console.log('userLogin: ' + userLogin)
+ref.on("value", function(data) {
+   console.log(data.val());
+   var id = data.val();
+   var keys = Object.keys(id)
+   let productContainer = document.querySelector("#msgBox");
+ Object.values(id).map(item => {
+    productContainer.innerHTML += `
+        <div class="container">
+            <h5 style="display: inline-block">From -> &nbsp;<h6 style="display: inline-block"> ${item.msgEmail}</h6> </h5>
+            <p>${item.message}</p>
+            <span class="time-right">${item.time}</span>
+        </div>
+   `   })        
+}, function (error) {
+   console.log("Error: " + error.code);
+});
+
+</script>
+</body>
+</html>

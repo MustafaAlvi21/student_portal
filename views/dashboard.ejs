@@ -1,0 +1,387 @@
+<style>
+     html,body{
+         width: 100%;
+         height: 100%;
+         margin: 0;
+         
+     }
+        body {
+             background-size: cover;
+             font-family: 'Roboto', sans-serif;
+             /* background-color: rgb(248, 248, 248); */
+             background-size: cover;
+            background-position: center;
+            background-repeat: round;
+            background-image: url('./background--body-dashboard.png');
+     }
+
+     ::-webkit-scrollbar {
+          width: 10px;
+     }     
+     ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+     }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+     /* -------------------------------------- */
+     
+     .social-card-header{
+         position: relative;
+         display: -ms-flexbox;
+         display: flex;
+         -ms-flex-align: center;
+         align-items: center;
+         -ms-flex-pack: center;
+         justify-content: center;
+         height: 96px;
+     }
+     .social-card-header i {
+         font-size: 32px;
+         color:#FFF;
+     }
+     .bg-facebook {
+         background-color:#3b5998;
+     }
+     .text-facebook {
+         color:#3b5998;
+     }
+     .bg-google-plus{
+         background-color:#dd4b39;
+     }
+     .text-google-plus {
+         color:#dd4b39;
+     }
+     .bg-twitter {
+         background-color:#1da1f2;
+     }
+     .text-twitter {
+         color:#1da1f2;
+     }
+     .bg-pinterest {
+         background-color:#bd081c;
+     }
+     .text-pinterest {
+         color:#bd081c;
+     }
+     .share:hover {
+             text-decoration: none;
+         opacity: 0.8;
+     }
+    
+        /* ---- particles.js container ---- */ 
+
+          nav{
+              height: 66px;
+              opacity: 0;
+              transition: all ease-in 0.9s ;
+              background-image: linear-gradient(to bottom right,#0f1012,#181b90)!important;
+          }
+          section{
+            opacity: 0;
+            transition: all ease-in 0.9s ;
+          }
+          a{
+            color: rgb(235, 235, 235) !important;
+          }
+          a:active{
+            color: coral !important;
+          }
+          .jc_center{
+              justify-content: center;
+          }
+          .p1{
+              padding: 15px 15px;
+          }
+          .navTogicon{
+            display: inline-block;
+            width: 1.5em;
+            height: 1.5em;
+            vertical-align: middle;
+           
+          }
+          button:focus{
+                  outline: none;
+              }
+          @media(max-width: 500px){
+              .p1{
+              padding: 15px 10px;
+              }
+              .res_icon{
+                font-size: 10px;
+              }
+              .navTogicon{
+            height: 1em ;
+          }
+            
+          }
+          @media(max-width: 992px){
+              .pl15{
+                  padding-left: 15px;
+              }
+              .nav_tog{
+                  border-color: rgba(0,0,0,0) !important;
+              }
+          }
+          @media(min-width: 992px){
+              .lg_icon{
+                position: absolute;
+                right: 2px;
+                top: 1px;
+              }
+          }
+          .mr_res{
+              margin-right: 20%;
+          }
+          @media(max-width: 480px){
+            .textMt{
+            margin-top: 60%;
+          }
+          p{
+            font-size: 2.5rem;
+          }
+          }
+          .navLink{
+            border-bottom: 5px solid transparent;
+            border-top: 5px solid transparent;
+            padding: 16px 15px !important;
+            width: max-content;
+            transition: all ease 0.4s;
+          }
+          .navLink:hover{
+            border-bottom: 4px solid coral;
+          }
+          table{
+              /* border: 2px solid #1C72B8;; */
+              padding: 0 !important;
+              
+          }
+          thead{
+              background-color: transparent;
+              /* border: 2px solid #1C72B8; */
+              color: rgb(11, 11, 112);
+          }
+          table thead th {
+            vertical-align: inherit;
+            border-bottom: none;
+        }
+        table th{
+            padding: 15px;
+            white-space: nowrap
+        }
+        table td{
+            font-size: 16px;
+            color: #7c7d7d;
+            /* line-height: 32px; */
+            padding: 5px;
+        }
+        .colorBtn{
+            border-radius: 10px;
+             color: #fff;
+             background-color: rgb(11, 11, 112);
+             border:3px solid white;
+             transition: all ease-in 0.2s;
+        }
+        .colorBtn:hover{
+            color: rgb(11, 11, 112) !important;
+             background-color: white;
+             border:3px solid rgb(11, 11, 112);
+             
+        }
+        .wNowrap{
+            white-space: nowrap;
+        }
+
+
+
+/*  Field */
+.signup__field {
+display: flex;
+flex-direction: column;
+width: 100%;
+position: relative;
+margin-bottom: 35px;
+}
+
+.signup__field:before {
+content: "";
+display: inline-block;
+position: absolute;
+width: 0px;
+height: 2px;
+background: rgb(11, 11, 112);
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+transition: all 0.4s ease;
+}
+
+.signup__field:hover:before {
+width: 100%;
+}
+
+.filepond--drop-label.filepond--drop-label label{
+    font-size: small;
+}
+</style>
+
+<body onload="loadWindow()" style="background-image: url('../images/background--body-dashboard.png');">
+  
+    <div class="dashboard-bg" >
+        <section id="sectionShow" style="width: 100%;margin-top: 50px;"> 
+            <div id="tab" class="text-center" style="margin-bottom: 25px;position: relative;z-index: 10;">
+           <button class="btn btn-primary col-md-2 col-10 colorBtn" id="Upload" > Upload Task</button>
+            <button class="btn btn-primary col-md-2 col-10 colorBtn" id="Hide" style="display: none;"> Hide section</button>
+            <%- include('../views/partials/messages.ejs')%>
+            </div>  
+                <div class="row" id="uploadForm" style="display: none;opacity: 0; margin-bottom: 25px;transition: all ease 0.8s;">
+                    <div class="col-md-6 col-8 mx-auto" style="background-color: white; border-radius: 5px; border: 2px solid #1C72B8;padding: 10px;">
+                        <h1>Upload Task</h1>
+            <form action="/upload-task" method="post">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Task name</label>
+                                <input type="text" style="border: 2px solid #1C72B8;" class="form-control" id="exampleInputEmail1" name="taskName" aria-describedby="emailHelp" placeholder="Name..." required autofocus>
+                                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                            </div>
+                            <div class="form-group signup__field">
+                                <select class="signup__input btlrNone" name="isCompleted" id="" style="border: 2px solid #1C72B8;">
+                                    <option value="In progress">In progress</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+                              
+                              
+                            <div class="form-group" style="width: 100px; height: 100px; margin-bottom: 50px;">
+                                <label for="exampleInputPassword1">File</label>
+                                <input type="file"  onchange="file123()" id="file" name="taskFile" class="form-control filepond" accept="application/pdf,application/vnd.ms-excel"  required autofocus >
+                            </div>
+                            <button type="submit" class="btn btn-primary colorBtn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            
+            <!-- <% if(typeof data != 'undefined') { %> -->
+                <table class="table-responsive-xl col-11 mx-auto table-hover">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th >#</th>
+                            <th >Task name</th>
+                            <th >File</th>
+                            <th >Progress</th>
+                            <th>Status</th>
+                            <th >Date Time</th>
+                            <th >View</th>
+                            <th >Download</th>
+                            <th >Remove</th>
+                        </tr>
+                    </thead>
+                <!-- <% if(data) { %> -->
+                    <tbody id="table_tr">
+                        <!-- <% data.forEach(function(data, index){ %>  -->
+                            <tr style="text-align: center;">
+                                <td style="max-width: 20px;">  <%= index  %></td>
+                                <td style="max-width: 50px;">  <%= data.taskName  %></td>
+                                <td> 
+                                    <center>
+                                        <iframe id="ifram" src="<%= data.cover1ImagePath %>" frameborder="0" width="200px" height="150px"></iframe>
+                                    </center>
+                                </td>
+                                <td>  <%= data.isCompleted  %></td>
+                                <td>  <%= data.status  %></td>
+                                <td>  <%= data.date_time  %></td>
+                                <td>  <a href="view-file/<%= data._id %>" class="btn colorBtn wNowrap mx-0" target="_blank">View file</a> </td>
+                                <td>  <a href="<%= data.cover1ImagePath %>" download="<%= data.taskName  %>" class="btn colorBtn wNowrap" target="_blank">Download file</a> </td>
+                                <td>  <a href="remove/<%= data._id %>" class="btn colorBtn wNowrap"> <i class="far fa-trash-alt"></i> </a> </td>
+                            </tr>
+                        <!-- <% }) %>                  E n d    o f    f o r E a ch    l o o p   -->
+                        </tbody>
+                </table>
+                
+                <!--<% } else { %>  -->                  <!--  e l s e    o f    d a t a    i f   -->
+                    <h4> You haven't upload anything yet!!! </h4>
+               <!-- <% } %>     -->                    <!--  E n d    o f    d a t a      i f  -->
+            <!--<% } else { %>  -->                    <!--  e l s e    o f    f o r E a ch    l o o p   -->
+                <h4> <%= msg %> </h4>
+            <!-- <% } %>  -->                            <!--  E n d    o f    t y p e o f     i f   -->
+
+
+            <br>
+            <br>
+            <br>
+
+
+            </section>
+
+    </div>
+</body>
+<script>
+    function loadWindow(){
+    document.getElementById("Hide").addEventListener("click", function(){
+        document.getElementById('uploadForm').style.display= 'none';
+        document.getElementById('uploadForm').style.opacity= '0'
+        document.getElementById("Hide").style.display= 'none';
+        document.getElementById("Upload").style.display= 'inline-block';
+    });
+
+    
+    document.getElementById('Upload').addEventListener('click', function(){
+        document.getElementById('uploadForm').style.display= 'block'
+        setTimeout(function(){document.getElementById('uploadForm').style.opacity= '1'}, 100);
+        document.getElementById("Upload").style.display= 'none'
+        document.getElementById("Hide").style.display= 'inline-block'
+    })
+
+    
+}
+
+
+var iframe = document.getElementById('iframe');
+var style = document.createElement('style');
+style.textContent =
+  'body {' +
+  '  border: red 1ps solid;' +
+  '  background-image: some-image;' +
+  '}' 
+;
+iframe.contentDocument.head.appendChild(style);
+</script>
+<script>
+  function showNav(){
+    document.getElementById('nav').style.opacity="1";
+  }
+  function tableSection(){
+    document.getElementById('sectionShow').style.opacity="1";
+  }
+  $(document).ready(function () {
+  showNav();
+  tableSection();
+});
+</script>
+
+<script> 
+    FilePond.create(document.querySelector('input'), {
+    acceptedFileTypes: ['image/png'],
+    fileValidateTypeDetectType: (source, type) => new Promise((resolve, reject) => {
+        
+        // Do custom type detection here and return with promise
+
+        resolve(type);
+    })
+});
+
+
+ function file123() {
+    
+    // document.querySelector('p').textContent = this.files[0].type;
+    console.clear();
+    console.log(this.files[0].type)
+	
+};
+</script> 

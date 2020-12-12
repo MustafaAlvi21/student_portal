@@ -1,0 +1,25 @@
+<!-- dashboard buttons.// -->
+    <section style="padding: 20px;
+  background-color: rgb(246, 247, 251);">
+        <section class="dashboard-buttons">
+            <div class="container">
+                <div class="row jc-center">
+                    <div class="d-button"> <a class="Users" href="/admin/users" style="text-align: center;"> User </a> </div>
+                    <div class="d-button"> <a class="Classified" href="/admin/classifieds" style="text-align: center;"> Classifeid Dashboard </a> </div>
+                    <div class="d-button"> <a class="Service" href="/admin/services" style="text-align: center;"> Service Dashboard </a> </div>
+                    <div class="d-button"> <a class="Shop" href="/admin/shops" style="text-align: center;"> Shop Dashboard </a> </div>
+                    <div class="d-button"> <a class="Product" href="/admin/products" style="text-align: center;"> Shop product Dashboard </a> </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <!-- dashboard buttons.// -->
+
+
+
+    <script>
+        pageTitle = document.title
+        word = pageTitle.split(' ')
+        class1 = '.'+word[3]
+        document.querySelector(class1).classList.add("active-d-button");
+    </script>

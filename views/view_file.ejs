@@ -1,0 +1,23 @@
+<style>
+    body::-webkit-scrollbar {
+      /* width: 1em; */
+      overflow: hidden;
+    }
+</style>
+<body onload="myFunction()">    
+    <% if (data[0]){ %>
+        <div id="div1" style="height: 100%;">
+            <embed src="<%= data[0].cover1ImagePath  %>" type="application/pdf" style="width: 100%;   height: 100%;" />
+        </div>
+    <% } else {%>
+        <h1> data not accessed</h1>
+        <% } %>
+        
+        
+    <script>
+function myFunction() {
+    height1 = parseInt(window.outerWidth)+'px'
+    document.querySelector('#div1').style.height= height1 
+}
+    </script>
+</body>

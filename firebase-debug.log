@@ -1,0 +1,73 @@
+[debug] [2020-12-12T16:16:06.437Z] ----------------------------------------------------------------------
+[debug] [2020-12-12T16:16:06.439Z] Command:       F:\nodejs\node.exe C:\Users\Alvi\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2020-12-12T16:16:06.439Z] CLI Version:   8.19.0
+[debug] [2020-12-12T16:16:06.440Z] Platform:      win32
+[debug] [2020-12-12T16:16:06.440Z] Node Version:  v12.16.2
+[debug] [2020-12-12T16:16:06.441Z] Time:          Sat Dec 12 2020 21:16:06 GMT+0500 (Pakistan Standard Time)
+[debug] [2020-12-12T16:16:06.441Z] ----------------------------------------------------------------------
+[debug] [2020-12-12T16:16:06.441Z] 
+[debug] [2020-12-12T16:16:06.443Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[debug] [2020-12-12T16:16:07.503Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2020-12-12T16:16:07.503Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] i  To change your data collection preference at any time, run `firebase logout` and log in again. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=323777154&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2020-12-12T16:16:22.594Z] >>> HTTP REQUEST POST https://accounts.google.com/o/oauth2/token  
+ {"code":"4/0AY0e-g7GO6zMmcKRblZceO7C5IuSqRwYCbGPDtoIGamnK9yIFj4IgonlyEN6LXxwkRJNMQ","client_id":"563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com","client_secret":"j9iVZfS8kkCEFUPaAeJV0sAi","redirect_uri":"http://localhost:9005","grant_type":"authorization_code"}
+[debug] [2020-12-12T16:16:22.617Z] Token Fetch Error: FirebaseError: Server Error. tunneling socket could not be established, statusCode=400
+    at Request._callback (C:\Users\Alvi\AppData\Roaming\npm\node_modules\firebase-tools\lib\api.js:32:31)
+    at self.callback (C:\Users\Alvi\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:185:22)
+    at Request.emit (events.js:310:20)
+    at Request.EventEmitter.emit (domain.js:482:12)
+    at Request.onRequestError (C:\Users\Alvi\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:877:8)
+    at ClientRequest.emit (events.js:310:20)
+    at ClientRequest.EventEmitter.emit (domain.js:482:12)
+    at ClientRequest.onConnect (C:\Users\Alvi\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\tunnel-agent\index.js:168:23)
+    at Object.onceWrapper (events.js:417:26)
+    at ClientRequest.emit (events.js:310:20)
+    at ClientRequest.EventEmitter.emit (domain.js:482:12)
+    at Socket.socketOnData (_http_client.js:510:11)
+    at Socket.emit (events.js:310:20)
+    at Socket.EventEmitter.emit (domain.js:482:12)
+    at addChunk (_stream_readable.js:286:12)
+    at readableAddChunk (_stream_readable.js:268:9)
+[debug] [2020-12-12T16:16:55.878Z] ----------------------------------------------------------------------
+[debug] [2020-12-12T16:16:55.880Z] Command:       F:\nodejs\node.exe C:\Users\Alvi\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2020-12-12T16:16:55.880Z] CLI Version:   8.19.0
+[debug] [2020-12-12T16:16:55.880Z] Platform:      win32
+[debug] [2020-12-12T16:16:55.880Z] Node Version:  v12.16.2
+[debug] [2020-12-12T16:16:55.881Z] Time:          Sat Dec 12 2020 21:16:55 GMT+0500 (Pakistan Standard Time)
+[debug] [2020-12-12T16:16:55.881Z] ----------------------------------------------------------------------
+[debug] [2020-12-12T16:16:55.882Z] 
+[info] i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[info] i  To change your data collection preference at any time, run `firebase logout` and log in again. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=210436806&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2020-12-12T16:17:08.300Z] >>> HTTP REQUEST POST https://accounts.google.com/o/oauth2/token  
+ {"code":"4/0AY0e-g6Lx54LhxtphPt_8hExzq-q3C73AV_jf293nOCc_R2kIXCt95dqAYnfjN8bHFDgHw","client_id":"563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com","client_secret":"j9iVZfS8kkCEFUPaAeJV0sAi","redirect_uri":"http://localhost:9005","grant_type":"authorization_code"}
+[debug] [2020-12-12T16:17:08.324Z] Token Fetch Error: FirebaseError: Server Error. tunneling socket could not be established, statusCode=400
+    at Request._callback (C:\Users\Alvi\AppData\Roaming\npm\node_modules\firebase-tools\lib\api.js:32:31)
+    at self.callback (C:\Users\Alvi\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:185:22)
+    at Request.emit (events.js:310:20)
+    at Request.EventEmitter.emit (domain.js:482:12)
+    at Request.onRequestError (C:\Users\Alvi\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:877:8)
+    at ClientRequest.emit (events.js:310:20)
+    at ClientRequest.EventEmitter.emit (domain.js:482:12)
+    at ClientRequest.onConnect (C:\Users\Alvi\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\tunnel-agent\index.js:168:23)
+    at Object.onceWrapper (events.js:417:26)
+    at ClientRequest.emit (events.js:310:20)
+    at ClientRequest.EventEmitter.emit (domain.js:482:12)
+    at Socket.socketOnData (_http_client.js:510:11)
+    at Socket.emit (events.js:310:20)
+    at Socket.EventEmitter.emit (domain.js:482:12)
+    at addChunk (_stream_readable.js:286:12)
+    at readableAddChunk (_stream_readable.js:268:9)
