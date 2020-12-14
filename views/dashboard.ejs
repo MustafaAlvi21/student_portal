@@ -256,6 +256,13 @@ width: 100%;
                                     <option value="Completed">Completed</option>
                                 </select>
                             </div>
+                            <div class="form-group signup__field">
+                                <select class="signup__input btlrNone" name="fileExtension" style="border: 2px solid #1C72B8;">
+                                    <option value="preview">PDF, TXT, JS, JSON, JPGP, PNG, JPG, GIF, SVG, WebP </option>
+                                    <option value="no-preview">Word/Doc, Svg/Excel, other </option>
+                                </select>
+                                <small style="color: red; text-align: justify;" >Please select a valid file type.</small>
+                            </div>
                               
                               
                             <div class="form-group" style="width: 100px; height: 100px; margin-bottom: 50px;">
@@ -289,14 +296,23 @@ width: 100%;
                                 <td style="max-width: 20px;">  <%= index  %></td>
                                 <td style="max-width: 50px;">  <%= data.taskName  %></td>
                                 <td> 
-                                    <center>
-                                        <iframe id="ifram" src="<%= data.cover1ImagePath %>" frameborder="0" width="200px" height="150px"></iframe>
-                                    </center>
+                                    <% if( data.fileType === 'no-preview'){ %>
+                                      <p> <i style="font-size: 100px;" class="fas fa-file-word"></i> </p> 
+                                    <% } else { %> 
+                                        <center>
+                                            <iframe id="ifram" src="<%= data.cover1ImagePath %>" frameborder="0" width="200px" height="150px"></iframe>
+                                        </center>
+                                    <% } %>
                                 </td>
                                 <td>  <%= data.isCompleted  %></td>
                                 <td>  <%= data.status  %></td>
                                 <td>  <%= data.date_time  %></td>
-                                <td>  <a href="view-file/<%= data._id %>" class="btn colorBtn wNowrap mx-0" target="_blank">View file</a> </td>
+                                <td>  
+                                      <% if( data.fileType === 'no-preview'){ %>
+                                        <button class="btn colorBtn wNowrap mx-0" disabled> Unable to view</button>
+                                      <% } else { %> 
+                                        <a href="view-file/<%= data._id %>" class="btn colorBtn wNowrap mx-0" target="_blank">View file</a> </td>
+                                      <% } %>
                                 <td>  <a href="<%= data.cover1ImagePath %>" download="<%= data.taskName  %>" class="btn colorBtn wNowrap" target="_blank">Download file</a> </td>
                                 <td>  <a href="remove/<%= data._id %>" class="btn colorBtn wNowrap"> <i class="far fa-trash-alt"></i> </a> </td>
                             </tr>

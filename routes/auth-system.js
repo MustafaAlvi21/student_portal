@@ -80,7 +80,7 @@ router.post('/forget-password', u_loginPage, function(req, res){
         },   
       });
       const userId = data._id;
-      const url = 'https://pm-hunarmand-portal.herokuapp.com/new-password'
+      const url = 'https://student-portal-v.herokuapp.com/new-password'
       //const url = 'http://localhost:4000/new-password'
       let info = await transporter.sendMail({
         from: '"Musto 👻" <foo@example.com>', // sender address

@@ -303,15 +303,16 @@
                   </div>
                          
                   <div class="signup__field">
-                    <select class="signup__input btlrNone course gender" name="gender" id="<%= data[0].gender %>" required>
+                    <select class="signup__input btlrNone course gender" name="gender" onchange="gender123()" id="<%= data[0].gender %>" required>
                         <option value="gender" disabled selected>Gender</option>
                         <option value="male">Male</option>
-                        <option value="femail">Femail</option>
+                        <option value="femail">Female</option>
                     </select>
+                    <small style="color: red; text-align: justify; display: none;" id="genderMsg">Select valid gender.</small>
                   </div>
       
                   <div class="signup__field" style="margin-top: 20px;">
-                    <input class="signup__input" type="text" name="roll" value="<%= typeof data[0].roll_no == undefined ? '' : data[0].roll_no %>" required />
+                    <input class="signup__input" type="text" name="roll" onkeyup="gender123()" value="<%= typeof data[0].roll_no == undefined ? '' : data[0].roll_no %>" required />
                     <label class="signup__label" for="email">Roll no</label>
                   </div>
 
@@ -323,7 +324,7 @@
                         </div>
                   <% } %>
 
-                  <button type="submit">UPDATE PROFILE</button>
+                  <button type="submit" id="submit">UPDATE PROFILE</button>
   
                           </form>
               </section>
@@ -393,5 +394,20 @@ function getSelectedOption(sel) {
 }
 // get selected option in sel (reference obtained above)
 var opt = getSelectedOption(a);
+
+
+function gender123(){
+    opt = document.getElementsByClassName('gender')[0].value
+    
+    if(opt == 'gender'){
+      document.getElementById('genderMsg').style.display = 'block'
+      document.getElementById('submit').disabled = true 
+    } else {
+      document.getElementById('genderMsg').style.display = 'none'
+      document.getElementById('submit').disabled = false 
+
+    }
+  }
+
 </script>
   

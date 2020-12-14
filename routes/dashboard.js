@@ -44,13 +44,7 @@ router.post('/upload-task', ensureAuthenticated, verifyProfile, async(req, res)=
         return asd
 } 
 
-console.log('taskFile')
-console.log(req.body.taskName)
 console.log(req.body.isCompleted)
-console.log(req.body.taskFile)
-console.log('taskFile')
-
-
 
         var today = new Date();
         var date = today.getDate() +'-'+(today.getMonth()+1)+'-'+ today.getFullYear();
@@ -65,6 +59,7 @@ console.log('taskFile')
             studentEmail : req.user.email,
             date_time : currentDate,
             timeStamp1: today,
+            fileType: req.body.fileExtension,
         })
     
       saveCover(book, req.body.taskFile)
