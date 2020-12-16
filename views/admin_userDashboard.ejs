@@ -244,9 +244,6 @@ width: 100%;
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Roll No</th>
-                        <% if (loginUser.course != 'CCNA') { %> 
-                            <th scope="col">git</th>
-                        <% } %>
                         <th scope="col">View all task</th>
                         <!-- <th scope="col">Download</th>
                         <th scope="col">Remove</th> -->
@@ -260,16 +257,7 @@ width: 100%;
                                 <td style="max-width: 50px;">  <%= data.fullname %></td>
                                 <td>  <%= data.email  %></td>
                                 <td>  <%= data.roll_no  %></td>
-                        <% if (loginUser.course != 'CCNA') { %> 
-                                <td> 
-                                 <% if (data.git) { %>
-                                   <a href="/<%= data.git %>" target="_blank" ><i style="color: black;" class="fab fa-github fa-2x"></i></a>
-                                   <% } else { %>
-                                     No git account connected
-                                   <% } %>
-                                </td>
-                        <% } %>
-                                <td> <p> <a href="view-task/<%= data._id %>" target="blank" class="btn colorBtn wNowrap mx-0">View</a> </p> </td>
+                                <td> <p> <a href="view-task/<%= data._id %>/<%= data.fullname %>" target="blank" class="btn colorBtn wNowrap mx-0">View</a> </p> </td>
                             </tr>
                         <% }) %>                 <!--  E n d    o f    f o r E a ch    l o o p   -->
                         </tbody>

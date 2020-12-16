@@ -227,9 +227,47 @@ transition: all 0.4s ease;
 width: 100%;
 }
 
+/*  Input */
+.signup__input {
+width: 100%;
+height: 100%;
+font-size: 1.2rem;
+padding: 10px 2px 0;
+border-bottom: 2px solid #e0e0e0;
+}
+
+/*  Label */
+.signup__label {
+color: #bdbdbd;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: 2px;
+font-size: 1.2rem;
+transition: all 0.3s ease;
+}
+
+.signup__input:focus + .signup__label,
+.signup__input:valid + .signup__label {
+top: 0;
+font-size: 1rem;
+background-color: white;
+
+}
+.btlrNone{
+border: none;
+outline: none;
+
+}
+.btlrNone:focus{
+    border: none !important;
+    outline: none !important;
+}
+
 .filepond--drop-label.filepond--drop-label label{
     font-size: small;
 }
+
 </style>
 
 <body onload="loadWindow()" style="background-image: url('../images/background--body-dashboard.png');">
@@ -244,27 +282,35 @@ width: 100%;
                 <div class="row" id="uploadForm" style="display: none;opacity: 0; margin-bottom: 25px;transition: all ease 0.8s;">
                     <div class="col-md-6 col-8 mx-auto" style="background-color: white; border-radius: 5px; border: 2px solid #1C72B8;padding: 10px;">
                         <h1>Upload Task</h1>
-            <form action="/upload-task" method="post">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Task name</label>
-                                <input type="text" style="border: 2px solid #1C72B8;" class="form-control" id="exampleInputEmail1" name="taskName" aria-describedby="emailHelp" placeholder="Name..." required autofocus>
-                                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-                            </div>
-                            <div class="form-group signup__field">
-                                <select class="signup__input btlrNone" name="isCompleted" id="" style="border: 2px solid #1C72B8;">
-                                    <option value="In progress">In progress</option>
+                        <form action="/upload-task" method="post">
+
+
+
+                            <div class="signup__field" style="border: none;">
+                                <input class="signup__input btlrNone" style="border: none;" type="text"  name="taskName" id="username" required />
+                                <label class="signup__label" for="username">Task name</label>
+                              </div>
+                            
+
+
+                            <!-- <div class="form-group">
+                                <label for="exampleInputEmail1"></label>
+                                <input type="text" style="border: 2px solid #1C72B8;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name..." required autofocus>
+                            </div> -->
+                            <div class="signup__field">
+                                <select class="signup__input btlrNone course" name="isCompleted" id="course" style="background-color: #fff;" required autofocus>
+                                    <option value="In progress" >In progress</option>
                                     <option value="Completed">Completed</option>
                                 </select>
                             </div>
-                            <div class="form-group signup__field">
-                                <select class="signup__input btlrNone" name="fileExtension" style="border: 2px solid #1C72B8;">
+                            
+                            <div class="signup__field">
+                                <select class="signup__input btlrNone course" name="fileExtension" required autofocus>
                                     <option value="preview">PDF, TXT, JS, JSON, JPGP, PNG, JPG, GIF, SVG, WebP </option>
                                     <option value="no-preview">Word/Doc, Svg/Excel, other </option>
                                 </select>
-                                <small style="color: red; text-align: justify;" >Please select a valid file type.</small>
+                                <small style="color: red; text-align: justify; display: none;" id="optMsg">Select valid course.</small>
                             </div>
-                              
-                              
                             <div class="form-group" style="width: 100px; height: 100px; margin-bottom: 50px;">
                                 <label for="exampleInputPassword1">File</label>
                                 <input type="file"  onchange="file123()" id="file" name="taskFile" class="form-control filepond" accept="application/pdf,application/vnd.ms-excel"  required autofocus >
@@ -283,6 +329,7 @@ width: 100%;
                             <th >File</th>
                             <th >Progress</th>
                             <th>Status</th>
+                            <th>Marks</th>
                             <th >Date Time</th>
                             <th >View</th>
                             <th >Download</th>
@@ -297,7 +344,8 @@ width: 100%;
                                 <td style="max-width: 50px;">  <%= data.taskName  %></td>
                                 <td> 
                                     <% if( data.fileType === 'no-preview'){ %>
-                                      <p> <i style="font-size: 100px;" class="fas fa-file-word"></i> </p> 
+                                        <img src="../images/NoPreview.jpg" alt="NoPreview" width="150px" height="150px">
+                                      <!-- <p> <i style="font-size: 100px;" class="fas fa-file-word"></i> </p>  -->
                                     <% } else { %> 
                                         <center>
                                             <iframe id="ifram" src="<%= data.cover1ImagePath %>" frameborder="0" width="200px" height="150px"></iframe>
@@ -306,6 +354,12 @@ width: 100%;
                                 </td>
                                 <td>  <%= data.isCompleted  %></td>
                                 <td>  <%= data.status  %></td>
+                                <td>
+                                    <% if (data.status == 'not checked') { %>
+                                        -----
+                                    <% } else { %> 
+                                        <%= data.marks  %></td>
+                                    <% } %> 
                                 <td>  <%= data.date_time  %></td>
                                 <td>  
                                       <% if( data.fileType === 'no-preview'){ %>
@@ -319,7 +373,6 @@ width: 100%;
                         <!-- <% }) %>                  E n d    o f    f o r E a ch    l o o p   -->
                         </tbody>
                 </table>
-                
                 <!--<% } else { %>  -->                  <!--  e l s e    o f    d a t a    i f   -->
                     <h4> You haven't upload anything yet!!! </h4>
                <!-- <% } %>     -->                    <!--  E n d    o f    d a t a      i f  -->

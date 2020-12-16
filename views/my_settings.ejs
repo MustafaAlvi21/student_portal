@@ -276,31 +276,41 @@
       opacity: 0;
       transition: 0.7s all ease-in-out;
   }
-          
+
+  .filepond--root{
+    width: 100px;
+    height: 50px;
+    font-size: 10px;
+  }
+
+
 </style>
-  <body>
+  <body style="font-family: 'Roboto', sans-serif;">
    
           <section class="mx-auto formSec animate1">
               <form  action="/my-profile" method="post" class="signup" autocomplete="off">
                 <%- include('./partials/messages.ejs') %>
 
                   <h1>PROFILE</h1>
-                  <small style="text-align: justify; color: red;">Complete profile to access dashboard</small>
+                  <% if(profileCompleted !== true){ %>
+                    <small style="text-align: justify; color: red;">Complete profile to access dashboard</small>
+                  <% } %>
                 
+                  
                   <div class="signup__field" style="margin-top: 20px;">
                     <input class="signup__input" type="text" name="fullname" value="<%= data[0].fullname %>" required />
                     <label class="signup__label" for="email">Full name</label>
                   </div>
                                   
-                  <div class="signup__field" style="margin-top: 20px;">
+                  <div class="signup__field" style="margin-top: 00px;">
                     <input class="signup__input" type="text" name="email" disabled value="<%= data[0].email %>"  style="background-color: transparent;" required />
                     <label class="signup__label" for="email"></label>
                   </div>
                                   
-                  <div class="signup__field" style="margin-top: 20px;">
+                  <!-- <div class="signup__field" style="margin-top: 20px;">
                     <input class="signup__input" type="text" name="encryptedPassword" disabled value="x x x x x x x x x x x x x x x x x x x x x"  style="background-color: transparent;" required />
                     <label class="signup__label" for="email"></label>
-                  </div>
+                  </div> -->
                          
                   <div class="signup__field">
                     <select class="signup__input btlrNone course gender" name="gender" onchange="gender123()" id="<%= data[0].gender %>" required>
@@ -316,13 +326,15 @@
                     <label class="signup__label" for="email">Roll no</label>
                   </div>
 
-                  <% if (loginUser.course == 'Blockchain'){ %>
-                  
-                        <div class="signup__field" style="margin-top: 20px;">
-                          <input class="signup__input" type="text" name="git" value="<%= typeof data[0].git == undefined ? '' : data[0].git %>" required />
-                          <label class="signup__label" for="email">Github link</label>
-                        </div>
-                  <% } %>
+                  <div class="" style="width:100px; height:150px; margin-top: 20px; display: flex; justify-content: left; flex-direction: row;">
+                    
+                    <div><input class="filepond" type="file" name="banner1" /></div>
+                    <div>
+                      <% if (data[0].banner1Path) { %> 
+                        <img src="<%= data[0].banner1Path %>" width="100px" height="100px" alt="profile pic" style="display: inline-block; border-radius: 100%; margin: 0px 10px;">
+                      <% } %>
+                    </div>
+                  </div>
 
                   <button type="submit" id="submit">UPDATE PROFILE</button>
   
@@ -334,7 +346,7 @@
               <br> <br>
               <br> <br>
 
-      <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
       
   </body>
   <script>
@@ -408,6 +420,5 @@ function gender123(){
 
     }
   }
-
 </script>
   

@@ -6,7 +6,7 @@ const { ensureAuthenticated } = require('../config/auth')
 const { userRoleAuth } = require('../config/userRoleCheck')
 const { verifyProfile } = require('../middlewares/verifyProfile')
 
-
+//  roll_no, gender
 /*------------------------------------------ */
 /*              My Profile Mian              */
 /*------------------------------------------ */
@@ -19,9 +19,16 @@ router.get('/my-profile', ensureAuthenticated, userRoleAuth, (req, res)=>{
         if( data ){
             console.log(data);
             if (req.user){
+                let profileCompleted = false
+                if(data[0].gender && data[0].roll_no){
+                    profileCompleted = true
+                }
+                console.log('profileCompleted' +profileCompleted)
+                console.log(data[0].gender)
                 return res.render('my_settings', {
                     title: 'PM-Hunarmand-Portal - My Settings',
                     data: data,
+                    profileCompleted: profileCompleted,
                     loginUser: req.user 
                 })
             } else {
@@ -35,13 +42,12 @@ router.get('/my-profile', ensureAuthenticated, userRoleAuth, (req, res)=>{
     })
 })
 
-router.post('/my-profile', ensureAuthenticated, userRoleAuth, (req, res)=>{
+router.post('/my-profile', ensureAuthenticated, userRoleAuth, async (req, res)=>{
     const id = req.user._id;
     const fullname = req.body.fullname;
     const roll = req.body.roll;
-    const git = req.body.git;
     const gender = req.body.gender;
-   
+    
     let errors = [];
     if ( !fullname || !roll ){
         errors.push({ msg: 'Please fill in all fields'});
@@ -57,45 +63,78 @@ router.post('/my-profile', ensureAuthenticated, userRoleAuth, (req, res)=>{
             }
         })
       }
+    
+      
+      array1=[];
 
+      if( req.body.banner1.length > 100){
+          saveCover(req.body.banner1)
+      }
 
-    let update = userDataModel.findByIdAndUpdate(id,
-        {
-            fullname : fullname,
-            roll_no : roll,
-            git : git,
-            gender : gender,
-        });
+function saveCover(banner1Encoded) {
+    console.log(' = > save cover access ')
+    if (banner1Encoded == null || banner1Encoded  == '') return
+    console.log(' = > if runs 1')
+    var banner1 = JSON.parse(banner1Encoded)
+    console.log('banner1Encoded => ' + banner1)
 
-        update.exec(function(err, data){
-            // console.log('3')
-            if (err) throw err;
-            // console.log('4')
-            if (data){
-                userDataModel.find({_id:id}, (err, data)=>{
-                    if (err) throw err;
-                    if (data){
-                        console.log(data);
-                        if (req.user){
-                            return res.render('my_settings', {
-                                title: 'PM-Hunarmand-Portal - My Profile Settings',
-                                data: data,
-                                loginUser: req.user,
-                                success_msg: 'Profile updated.', 
-                            })
-                        } else {
-                            return res.render('my_settings', {
-                                title: 'PM-Hunarmand-Portal - My Profile Settings',
-                                data: data,
-                                loginUser: undefined 
-                            })
-                        }
-                    }
-                })
+    console.log('yes 1')
+    if (banner1 != null || banner1Encoded  != '') {
+        console.log(' = > if runs 2')
+        console.log('yes 2')
+        banner1 = new Buffer.from(banner1.data, 'base64')
+        banner1Type = banner1.type
+        
+        if(banner1 !== undefined){
+            array1.push(banner1)
+            array1.push(banner1Type)
+        }
+    }
+  }      
+            
+    data={};
+    if(array1.length  > 0){
+      data = {
+          fullname : fullname,
+          roll_no : roll,
+          gender : gender,
+          banner1 : array1[0],
+          banner1Type : array1[1]
+      }
+    } else {
+        data = {
+          fullname : fullname,
+          roll_no : roll,
+          gender : gender,
+      }
+    }
+
+    let update = userDataModel.findByIdAndUpdate(id, data);
+        
+                    
+    try {
+        const newBook = await update.exec( (err, data) => {
+            if(err) throw err;
+            if(data){
+                if(req.user){
+                    req.flash('success_msg', 'Profile updated.')
+                    return res.redirect('/my-profile')
+                } else {
+                    req.flash('error', 'Server not responding.')
+                    return res.redirect('/my-profile')  
+                }
+            } else {
+                return res.redirect('/my-profile')
             }
         })
+    } catch(error) {
+        console.log(error)
+        req.flash('error', 'There is an error, please try again.')
+        return res.redirect('my-profile')
+    }
+  
 })
-
-
-
-module.exports = router
+    
+    
+    
+    module.exports = router

@@ -1,6 +1,12 @@
-
+<style>
+  .navbar-collapse {
+    z-index: 33;
+    /* background-color: gainsboro; */
+    color: #181b90;
+  }
+</style>
 <!-- _____________________________________________________________________________________________________________________________________ -->
-<div id="particles-js">
+<div id="particles-js"> <!-- particle-js ka div pori website main kaheen bhi bandh nahi kerna hay takay background kharab na ho  -->
 <div style="height: 66px">
   <nav class="navbar navbar-expand-lg navbar-light" id="nav" style="padding: 0 !important;">
     <button class="navbar-toggler nav_tog" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,11 +16,14 @@
     </button>
     <a class="navbar-brand navColor p1 mr-0 logo" style="font-weight: bold;" href="/">Student Portal</a>
     <% if(loginUser){ %>
-      <div class="p1 res_icon lg_icon"><a href="/logout" class="text-center">
-        <div style="font-size: 22px;line-height: 1;"><i class="fas fa-user-minus"></i></div>
-        <small> 
-          <%= loginUser.fullname %>
-        </small>
+      <div class="p1 res_icon lg_icon" style="color: #EBEBEB;">
+        <% if (loginUser.banner1) { %> 
+          <img src="<%= loginUser.banner1Path %>" alt="dp" style="border-radius: 5px; max-width: 30px; max-height: 40px;">
+          <% } else { %>
+            <div style="font-size: 22px;line-height: 1;text-align: center;"><i class="fas fa-user" ></i></div>
+            <small style="text-align: center;" > <%= loginUser.fullname %></small>
+            <% } %>
+
         <% } else { %>
           <div class="p1 res_icon lg_icon"><a href="/login" class="text-center">
           <div style="font-size: 22px;line-height: 1;"><i class="fas fa-user-plus"></i></div>
@@ -22,26 +31,33 @@
             Register/login
           </small>
             <% } %>      
-    </a></div>
+            </a>
+          </div>
+          
     <div class="collapse navbar-collapse jc_center pl15" id="navbarNavAltMarkup">
       <div class="navbar-nav mr_res">
         <a class="nav-item nav-link active navColor navLink" href="/">Home <span class="sr-only">(current)</span></a>
         <% if (typeof loginUser != 'undefined') { %>
+          
           <% if (loginUser.role == 'user') { %>
           <a class="nav-item nav-link navColor navLink" href="/dashboard">Dashboard</a>
           <% } else { %> 
             <a class="nav-item nav-link navColor navLink" href="/admin/users">Dashboard</a>
-          <% } }  else {%>
-            <a class="nav-item nav-link navColor navLink" href="/dashboard">Dashboard</a>
-        <% } %>
-
-
-        <% if(loginUser){ %>
-          <% if(loginUser.role == 'user'){ %>
-            <a class="nav-item nav-link navColor navLink" href="/my-profile">Profile</a>
             <% } %>
-        <% } else { %>
-        <% } %>
+            <% }  else {%>
+              <a class="nav-item nav-link navColor navLink" href="/dashboard">Dashboard</a>
+              <% } %>
+              
+              
+              <% if(loginUser){ %>
+                <% if(loginUser.role == 'user'){ %>
+                  <a class="nav-item nav-link navColor navLink" href="/my-profile">Profile</a>
+                  <a class="nav-item nav-link navColor navLink" href="/logout">Logout</a>
+                <% } else {%>
+                  <a class="nav-item nav-link navColor navLink" href="/logout">Logout</a>
+                <% } %>
+              <% } else { %>
+              <% } %>
       </div>
     </div>
 </nav>

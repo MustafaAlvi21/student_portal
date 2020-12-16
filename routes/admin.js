@@ -31,13 +31,13 @@ if(req.user){
 /*    -----------------------------------    */
 /*        Admin View All Task Of User        */
 /*    -----------------------------------    */
-router.get('/view-task/:id', ensureAuthenticated, async (req, res)=> {
+router.get('/view-task/:id/:userName', ensureAuthenticated, async (req, res)=> {
     user = req.params.id;
     taskDataModel.find({studentId: user}).sort({timeStamp1: 'desc'}).exec((err, data) => {
         if(err) throw err;
         if(data){
-            console.log('dash => ' + data)
-            return res.render('admin_userView', { title: 'PM-Hunarmand-Portal - Dashboard', data: data, userId: user, msg: "", loginUser: req.user})
+            console.log('dash => ' + data)                                                            //userId means student id
+            return res.render('admin_userView', { title: 'PM-Hunarmand-Portal - Dashboard', data: data, userId: user, userName: req.params.userName, msg: "", loginUser: req.user})
         } else {
             return res.render('admin_userView', { title: 'PM-Hunarmand-Portal - Dashboard', data: undefined, msg: "Something is wrong, can't find anything" , loginUser: req.user})
         }
@@ -51,15 +51,17 @@ router.post('/view-task/update-status/:id/:userId', ensureAuthenticated, B_Admin
     id = req.params.id;
     userId = req.params.userId;
     enteredStatus = req.body.status;
+    enteredMarks = req.body.marks;
     let update = taskDataModel.findByIdAndUpdate( id , 
         { 
+            marks : enteredMarks,
             status : enteredStatus,
         });
         update.exec (function (err, data) {
             if (err) throw err;
             asd = '/admin/view-task/' + userId
             if (data){
-                req.flash('success_msg', 'Task status is updated successfully.');
+                req.flash('success_msg', 'Task is updated successfully.');
                 res.redirect(asd)    
             } else {
                 req.flash('error_msg', 'There is an error in updating status.');

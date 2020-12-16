@@ -11,6 +11,7 @@ var taskSchema  = new mongoose.Schema(
         studentEmail : { type: String, require: true} ,
         timeStamp1 : { type: String, require: true} ,
         fileType : { type: String, require: true} ,
+        marks : { type: String, require: true} ,
 
         cover1Image: { type: Buffer, required: true },
         cover1ImageType: { type: String, required: true },

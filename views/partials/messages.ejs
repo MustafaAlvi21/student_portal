@@ -1,6 +1,13 @@
 <!-- Register form validation error msgs -->
 <% if (typeof errors != 'undefined' ) { %>
-    <% errors.forEach(function(error) { %>
+
+  <script>
+    setTimeout( function(){
+      document.querySelector('.alert-danger').style.display = 'none'
+    }, 5000)
+  </script>
+
+  <% errors.forEach(function(error) { %>
         
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <center>
@@ -17,6 +24,13 @@
 
 <% if(success_msg != ''){  %>
 
+  
+<script>
+  setTimeout( function(){
+    document.querySelector('.alert-success').style.display = 'none'
+  }, 5000)
+</script>
+
     <div class="alert alert-success alert-dismissible fade show" role="alert">
           <center>
             <strong> <%= success_msg %> </strong> 
@@ -29,6 +43,13 @@
 <% }  %>
 
 <% if(error_msg != ''){  %>
+
+  <script>
+    setTimeout( function(){
+      document.querySelector('.alert-danger').style.display = 'none'
+    }, 5000)
+  </script>
+
 
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <center>
@@ -44,6 +65,12 @@
 <!-- Login form validation error msgs -->
 <% if(error != ''){  %>
 
+  <script>
+    setTimeout( function(){
+      document.querySelector('.alert-danger').style.display = 'none'
+    }, 5000)
+  </script>
+
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <center>
         <strong> <%= error %> </strong>   
@@ -58,6 +85,12 @@
 
 <!-- forget mail msgs -->
 <% if(typeof warning != 'undefined'){  %>
+
+  <script>
+    setTimeout( function(){
+      document.querySelector('.alert-warning').style.display = 'none'
+    }, 5000)
+  </script>
 
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <center>

@@ -498,7 +498,7 @@ width: 100%;
         </div>
         <section id="sectionShow" style="width: 100%;margin-top: 50px;"> 
             <%- include('../views/partials/messages.ejs')%>
-            
+<h2 style="padding-left: 5%;">All tasks of <strong><%= userName %> </strong> </h2>            
             <!-- <% if(typeof data != 'undefined') { %> -->
                 <table class="table-responsive-xl col-11 mx-auto table-hover">
                     <thead>
@@ -507,8 +507,9 @@ width: 100%;
                             <th >Task name</th>
                             <th >File</th>
                             <th >Progress</th>
-                            <th >Date Time</th>
                             <th>Status</th>
+                            <th>Marks</th>
+                            <th >Date Time</th>
                             <th >Update status</th>
                             <th >View</th>
                             <th >Download</th>
@@ -526,30 +527,36 @@ width: 100%;
                                     </center>
                                 </td>
                                 <td>  <%= data.isCompleted  %></td>
-                                <td>  <%= data.date_time  %></td>
-
+                                
                                 <form action="update-status/<%= data._id %>/<%= userId %>" method="post">
                                     <% if(data.isCompleted == 'In progress') { %>
                                         <td>
-                                            <select name="status" disabled> 
+                                            <!-- <select name="status" disabled > 
                                                 <option value="" selected disabled> << <%= data.status %> >> </option>
                                                 <option value="checked">Checked</option>
                                                 <option value="not checked">Not checked</option>
+                                            </select>  -->
+                                            <input type="text" readonly name="url" value="<%= data.status %>" id="url" disabled style="background-color: transparent; border: none; text-align: center;" >
+                                        </td>
+                                        <td>  Not checked yet</td>
+                                        <td>  <%= data.date_time  %></td>
+                                        <td>  <small style="color: red; font-weight: 500;"> Task not completed yet.</small>  </td>
+                                        <% } else { %>
+                                            <td>
+                                                <select name="status"> 
+                                                    <option value="<%= typeof data.status == 'undefined' ? 'not checked' : data.status %>" selected>  <%= data.status %>  </option>
+                                                    <% if (data.status == 'not checked') { %>
+                                                        <option value="checked">Checked</option>
+                                                    <% } else { %>
+                                                        <option value="not checked">Not checked</option>
+                                                    <% } %>
                                             </select> 
                                             <input type="text" name="url" value="" id="url" hidden>
                                         </td>
-                                        <td> <button type="submit" disabled class="btn colorBtn wNowrap mx-0"> <i class="fa fa-retweet" aria-hidden="true"></i></button> <br> <small style="color: red; font-weight: 500;"> Task not completed yet.</small>  </td>
-                                    <% } else { %>
-                                        <td>
-                                            <select name="status"> 
-                                                <option value="" selected disabled> << <%= data.status %> >> </option>
-                                                <option value="checked">Checked</option>
-                                                <option value="not checked">Not checked</option>
-                                            </select> 
-                                            <input type="text" name="url" value="" id="url" hidden>
-                                        </td>
+                                        <td> <input type="text" name="marks" value="<%= typeof data.marks == 'undefined' ? 'no mraks yet' : data.marks %>" style=" max-width: 120px; height: 20px; text-align: center;"></td> 
+                                        <td>  <%= data.date_time  %></td>
                                         <td> <button type="submit" class="btn colorBtn wNowrap mx-0"> <i class="fa fa-retweet" aria-hidden="true"></i>  </button> </td>
-                                    <% } %>
+                                        <% } %>
                                     </form> 
                                     
                                 <td>  <a href="/view-file/<%= data._id %>" class="btn colorBtn wNowrap mx-0" target="_blank">View file</a> </td>
