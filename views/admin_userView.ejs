@@ -528,7 +528,7 @@ width: 100%;
                                 </td>
                                 <td>  <%= data.isCompleted  %></td>
                                 
-                                <form action="update-status/<%= data._id %>/<%= userId %>" method="post">
+                                <form action="/admin/view-task/update-status/<%= data._id %>/<%= userId %>/<%= userName %>" method="post">
                                     <% if(data.isCompleted == 'In progress') { %>
                                         <td>
                                             <!-- <select name="status" disabled > 

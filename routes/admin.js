@@ -47,7 +47,7 @@ router.get('/view-task/:id/:userName', ensureAuthenticated, async (req, res)=> {
 
 
 /**             Update Status              **/
-router.post('/view-task/update-status/:id/:userId', ensureAuthenticated, B_Admin_RoleAuth, (req, res)=> {
+router.post('/view-task/update-status/:id/:userId/:userName', ensureAuthenticated, B_Admin_RoleAuth, (req, res)=> {
     id = req.params.id;
     userId = req.params.userId;
     enteredStatus = req.body.status;
@@ -59,8 +59,8 @@ router.post('/view-task/update-status/:id/:userId', ensureAuthenticated, B_Admin
         });
         update.exec (function (err, data) {
             if (err) throw err;
-            asd = '/admin/view-task/' + userId
-            if (data){
+            asd = `/admin/view-task/${userId}/${req.params.userName}`          //    /admin/view-task/5fcbe3b66d14794ae810f70d
+            if (data){                                                         //    /admin/view-task/5fcbe3b66d14794ae810f70d/test123
                 req.flash('success_msg', 'Task is updated successfully.');
                 res.redirect(asd)    
             } else {
