@@ -268,10 +268,21 @@ outline: none;
     font-size: small;
 }
 
+
+
+#ifrm1 {
+  opacity: 0;
+  transition: opacity 1.5s linear;
+}
+#trig1:hover + iframe {
+  opacity: 1;
+  transition: opacity 1.5s linear;
+}
+
 </style>
 
 <body onload="loadWindow()" style="background-image: url('../images/background--body-dashboard.png');">
-  
+
     <div class="dashboard-bg" >
         <section id="sectionShow" style="width: 100%;margin-top: 50px;"> 
             <div id="tab" class="text-center" style="margin-bottom: 25px;position: relative;z-index: 10;">
@@ -324,13 +335,12 @@ outline: none;
             
 
             <!-- --------------------------------------  Dashboard Table  -------------------------------------- -->
-            <!-- <% if(typeof data != 'undefined') { %> -->
+            <% if(typeof data != 'undefined') { %>
                 <table class="table-responsive-xl col-11 mx-auto table-hover">
                     <thead>
                         <tr style="text-align: center;">
                             <th >#</th>
                             <th >Task name</th>
-                            <th >File</th>
                             <th >Progress</th>
                             <th>Status</th>
                             <th>Marks</th>
@@ -340,22 +350,13 @@ outline: none;
                             <th >Remove</th>
                         </tr>
                     </thead>
-                <!-- <% if(data) { %> -->
+                <% if(data) { %>
                     <tbody id="table_tr">
-                        <!-- <% data.forEach(function(data, index){ %>  -->
+                        <% data.forEach(function(data, index){ %> 
                             <tr style="text-align: center;">
                                 <td style="max-width: 20px;">  <%= index  %></td>
                                 <td style="max-width: 50px;">  <%= data.taskName  %></td>
-                                <td> 
-                                    <% if( data.fileType === 'no-preview'){ %>
-                                        <img src="../images/NoPreview.jpg" alt="NoPreview" width="150px" height="150px">
-                                      <!-- <p> <i style="font-size: 100px;" class="fas fa-file-word"></i> </p>  -->
-                                    <% } else { %> 
-                                        <center>
-                                            <iframe id="ifram" loading="lazy" src="<%= data.cover1ImagePath %>" frameborder="0" width="200px" height="150px"></iframe>
-                                        </center>
-                                    <% } %>
-                                </td>
+                                
                                 <td>  <%= data.isCompleted  %></td>
                                 <td>  <%= data.status  %></td>
                                 <td>
@@ -374,15 +375,15 @@ outline: none;
                                 <td>  <a href="<%= data.cover1ImagePath %>" download="<%= data.taskName  %>" class="btn colorBtn wNowrap" target="_blank">Download file</a> </td>
                                 <td>  <a href="remove/<%= data._id %>" class="btn colorBtn wNowrap"> <i class="far fa-trash-alt"></i> </a> </td>
                             </tr>
-                        <!-- <% }) %>                  E n d    o f    f o r E a ch    l o o p   -->
+                        <% }) %>                 <!--  E n d    o f    f o r E a ch    l o o p   -->
                         </tbody>
                 </table>
-                <!--<% } else { %>  -->                  <!--  e l s e    o f    d a t a    i f   -->
+                <% } else { %>                    <!--  e l s e    o f    d a t a    i f   -->
                     <h4> You haven't upload anything yet!!! </h4>
-               <!-- <% } %>     -->                    <!--  E n d    o f    d a t a      i f  -->
-            <!--<% } else { %>  -->                    <!--  e l s e    o f    f o r E a ch    l o o p   -->
+                <% } %>                        <!--  E n d    o f    d a t a      i f  -->
+            <% } else { %>                     <!--  e l s e    o f    f o r E a ch    l o o p   -->
                 <h4> <%= msg %> </h4>
-            <!-- <% } %>  -->                            <!--  E n d    o f    t y p e o f     i f   -->
+             <% } %>                             <!--  E n d    o f    t y p e o f     i f   -->
 
 
             <br>
