@@ -279,6 +279,8 @@ outline: none;
             <button class="btn btn-primary col-md-2 col-10 colorBtn" id="Hide" style="display: none;"> Hide section</button>
             <%- include('../views/partials/messages.ejs')%>
             </div>  
+
+            <!-- --------------------------------------  Upload Form  -------------------------------------- -->
                 <div class="row" id="uploadForm" style="display: none;opacity: 0; margin-bottom: 25px;transition: all ease 0.8s;">
                     <div class="col-md-6 col-8 mx-auto" style="background-color: white; border-radius: 5px; border: 2px solid #1C72B8;padding: 10px;">
                         <h1>Upload Task</h1>
@@ -320,6 +322,8 @@ outline: none;
                     </div>
                 </div>
             
+
+            <!-- --------------------------------------  Dashboard Table  -------------------------------------- -->
             <!-- <% if(typeof data != 'undefined') { %> -->
                 <table class="table-responsive-xl col-11 mx-auto table-hover">
                     <thead>
@@ -344,11 +348,11 @@ outline: none;
                                 <td style="max-width: 50px;">  <%= data.taskName  %></td>
                                 <td> 
                                     <% if( data.fileType === 'no-preview'){ %>
-                                        <img src="../images/NoPreview.jpg" alt="NoPreview" width="150px" height="150px">
+                                        <img src="../images/NoPreview.jpg" loading="lazy" alt="NoPreview" width="150px" height="150px">
                                       <!-- <p> <i style="font-size: 100px;" class="fas fa-file-word"></i> </p>  -->
                                     <% } else { %> 
                                         <center>
-                                            <iframe id="ifram" src="<%= data.cover1ImagePath %>" frameborder="0" width="200px" height="150px"></iframe>
+                                            <iframe id="ifram" loading="lazy" src="<%= data.cover1ImagePath %>" frameborder="0" width="200px" height="150px"></iframe>
                                         </center>
                                     <% } %>
                                 </td>

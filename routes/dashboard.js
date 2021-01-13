@@ -28,27 +28,28 @@ router.get('/dashboard', ensureAuthenticated, verifyProfile, async (req, res)=> 
 
 router.post('/upload-task', ensureAuthenticated, verifyProfile, async(req, res)=> {
     function timeIn_am_pm() { 
-        var date = new Date(); 
-        var hours = date.getHours(); 
-        var minutes = date.getMinutes(); 
+      let options = {
+        timeZone: 'Asia/Karachi',
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+      },
+      formatter = new Intl.DateTimeFormat([], options);
+    
+    console.log(formatter.format(new Date()));
 
-        // Check whether AM or PM
-        var newformat = hours >= 12 ? 'PM' : 'AM';  
-        // Find current hour in AM-PM Format
-        hours = hours % 12;          
-        // To display "0" as "12"
-        hours = hours ? hours : 12;  
-        minutes = minutes < 10 ? '0' + minutes : minutes; 
-        
-        asd = hours + ':' + minutes + ' ' + newformat; 
-        return asd
+    return (formatter.format(new Date()))
 } 
 
 console.log(req.body.isCompleted)
 
         var today = new Date();
-        var date = today.getDate() +'-'+(today.getMonth()+1)+'-'+ today.getFullYear();
-        var currentDate = date + ' / ' + timeIn_am_pm();
+        // var date = today.getDate() +'-'+(today.getMonth()+1)+'-'+ today.getFullYear();
+        // var currentDate = date + ' / ' + timeIn_am_pm();
+        var currentDate =  timeIn_am_pm();
     
         const book = new taskDataModel({
             isCompleted: req.body.isCompleted,

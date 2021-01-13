@@ -17,11 +17,6 @@
   <!-- Font awesome 5 -->
   <!-- <link href="../fonts/fontawesome/css/all.min3661.css" type="text/css" rel="stylesheet"> -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-
-  <!-- custom style -->
-
-  <!-- custom javascript -->
-  
   <!--              F i l e p o n d              -->
   <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
   <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
@@ -33,6 +28,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <script src="textyle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+</head>
 
     <style>
      html,body{
@@ -235,9 +232,9 @@
             white-space: nowrap;
         }
 
-     </style>
-</head>
-<style>
+     
+
+
     html,body{
         width: 100%;
         height: 100%;
@@ -523,7 +520,7 @@ width: 100%;
                                 <td style="max-width: 50px;">  <%= data.taskName  %></td>
                                 <td> 
                                     <center>
-                                        <iframe id="ifram" src="<%= data.cover1ImagePath %>" frameborder="0" width="200px" height="150px"></iframe>
+                                        <iframe id="ifram" loading="lazy"  src="<%= data.cover1ImagePath %>" frameborder="0" width="200px" height="150px"></iframe>
                                     </center>
                                 </td>
                                 <td>  <%= data.isCompleted  %></td>
