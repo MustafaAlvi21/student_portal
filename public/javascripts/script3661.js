@@ -2,7 +2,10 @@
 
 // jquery ready start
 $(document).ready(function() {
-	// jQuery code
+
+    (function(a){a.fn.textyle=function(b){var g=this;var d=g.contents();var f={duration:400,delay:100,easing:"swing",callback:null};var c=a.extend(f,b);d.each(function(){var h=a(this);if(this.nodeType===3){e(h)}});function e(h){h.replaceWith(h.text().replace(/(\S)/g,"<span>$1</span>"))}return this.each(function(){var h=g.children().length;g.css("opacity",1);for(var j=0;j<h;j++){g.children("span:eq("+j+")").delay(c.delay*j).animate({opacity:1,top:0,left:0},c.duration,c.easing,c.callback)}})}}(jQuery));
+    
+    // jQuery code
 
   // var html_download = '<a href="http://bootstrap-ecommerce.com/templates.html" class="btn btn-dark rounded-pill" style="font-size:13px; z-index:100; position: fixed; bottom:10px; right:10px;">Download theme</a>';
   //  $('body').prepend(html_download);
