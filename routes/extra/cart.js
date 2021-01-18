@@ -91,11 +91,11 @@ router.get('/cart', ensureAuthenticated, verifyProfile, findProductDataForCart, 
     if (req.user) {
         cartDataModel.find({userId : req.user._id}, (err, data) => {              
             // console.log('findProductDataForCart => ' + res.locals.cart)
-            res.render('cart', { title: 'PM-Hunarmand-Portal - Cart', data: data[0], productData: res.locals.cart, loginUser: req.user.fullname});
+            res.render('cart', { title: 'Student Portal - Cart', data: data[0], productData: res.locals.cart, loginUser: req.user.fullname});
         })
     } else {
             // console.log( data )
-            res.render('cart', { title: 'PM-Hunarmand-Portal - Cart', data: null, loginUser: undefined});
+            res.render('cart', { title: 'Student Portal - Cart', data: null, loginUser: undefined});
     }
 })
 
@@ -181,7 +181,7 @@ router.get('/checkout',ensureAuthenticated, verifyProfile, findProductDataForCar
             console.log('findProductDataForCart => ' + (res.locals.cart).length)
             console.log(' <= data => ' + data.length)
             if((res.locals.cart).length > 0  ) {
-                res.render('checkout', { title: 'PM-Hunarmand-Portal - Cart', data: data[0], productData: res.locals.cart, loginUser: req.user.fullname});
+                res.render('checkout', { title: 'Student Portal - Cart', data: data[0], productData: res.locals.cart, loginUser: req.user.fullname});
             } else {
                     req.flash('error', 'Your cart is empty so you cannot access this page.')
                     res.redirect('/cart')                
@@ -189,7 +189,7 @@ router.get('/checkout',ensureAuthenticated, verifyProfile, findProductDataForCar
             })
     } else {
             res.redirect('/')
-            // res.render('cart', { title: 'PM-Hunarmand-Portal - Cart', data: null, loginUser: undefined});
+            // res.render('cart', { title: 'Student Portal - Cart', data: null, loginUser: undefined});
     }
 })
 

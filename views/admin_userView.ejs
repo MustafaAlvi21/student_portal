@@ -502,7 +502,6 @@ width: 100%;
                         <tr style="text-align: center;">
                             <th >#</th>
                             <th >Task name</th>
-                            <th >File</th>
                             <th >Progress</th>
                             <th>Status</th>
                             <th>Marks</th>
@@ -518,11 +517,6 @@ width: 100%;
                             <tr style="text-align: center;">
                                 <td style="max-width: 20px;">  <%= index  %></td>
                                 <td style="max-width: 50px;">  <%= data.taskName  %></td>
-                                <td> 
-                                    <center>
-                                        <iframe id="ifram" loading="lazy"  src="<%= data.cover1ImagePath %>" frameborder="0" width="200px" height="150px"></iframe>
-                                    </center>
-                                </td>
                                 <td>  <%= data.isCompleted  %></td>
                                 
                                 <form action="/admin/view-task/update-status/<%= data._id %>/<%= userId %>/<%= userName %>" method="post">
@@ -556,8 +550,14 @@ width: 100%;
                                         <% } %>
                                     </form> 
                                     
-                                <td>  <a href="/view-file/<%= data._id %>" class="btn colorBtn wNowrap mx-0" target="_blank">View file</a> </td>
-                                <td>  <a href="<%= data.cover1ImagePath %>" download="<%= data.taskName  %>" class="btn colorBtn wNowrap" target="_blank">Download file</a> </td>
+                                <td> 
+                                    <% if( data.fileType === 'no-preview'){ %>
+                                        <button class="btn colorBtn wNowrap mx-0" disabled> Unable to view</button>
+                                    <% } else { %> 
+                                        <a href="/view-file/<%= data._id %>" class="btn colorBtn wNowrap mx-0" target="_blank">View file</a> 
+                                    <% } %>
+                                </td>
+                                <td> <a href="/download/<%= data._id %>" class="btn colorBtn wNowrap" target="_blank">Download file  </a> </td>
                             </tr>
                         <!-- <% }) %>                  E n d    o f    f o r E a ch    l o o p   -->
                         </tbody>

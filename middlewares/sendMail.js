@@ -30,7 +30,7 @@ exports.sendMail = async function (dataOfOrder) {
       });
       const userId = dataOfOrder[0]._id;
 
-      // const url = 'https://PM-Hunarmand-Portal.herokuapp.com/new-password'
+      // const url = 'https://Student Portal.herokuapp.com/new-password'
       const url = dataOfOrder[0].productName
 
       let info = await transporter.sendMail({
@@ -48,10 +48,10 @@ exports.sendMail = async function (dataOfOrder) {
       // ====================================
       
       return 'Order is mailed';
-    //   return res.render('login', { title: 'PM-Hunarmand-Portal - Forget Password', success_msg:'Reset password link is emailed...', loginUser: undefined, })
+    //   return res.render('login', { title: 'Student Portal - Forget Password', success_msg:'Reset password link is emailed...', loginUser: undefined, })
     } else {
         return 'There is an error in mailing order';
-        // return res.render('forget_password', { title: 'PM-Hunarmand-Portal - Forget Password', error:'Invalid email', loginUser: undefined, })          
+        // return res.render('forget_password', { title: 'Student Portal - Forget Password', error:'Invalid email', loginUser: undefined, })          
       }
     })
 

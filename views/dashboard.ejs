@@ -297,15 +297,11 @@ outline: none;
                         <h1>Upload Task</h1>
                         <form action="/upload-task" method="post">
 
-
-
                             <div class="signup__field" style="border: none;">
                                 <input class="signup__input btlrNone" style="border: none;" type="text"  name="taskName" id="username" required />
                                 <label class="signup__label" for="username">Task name</label>
                               </div>
-                            
-
-
+                       
                             <!-- <div class="form-group">
                                 <label for="exampleInputEmail1"></label>
                                 <input type="text" style="border: 2px solid #1C72B8;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name..." required autofocus>
@@ -371,8 +367,8 @@ outline: none;
                                         <button class="btn colorBtn wNowrap mx-0" disabled> Unable to view</button>
                                       <% } else { %> 
                                         <a href="view-file/<%= data._id %>" class="btn colorBtn wNowrap mx-0" target="_blank">View file</a> </td>
-                                      <% } %>
-                                <td>  <a href="<%= data.cover1ImagePath %>" download="<%= data.taskName  %>" class="btn colorBtn wNowrap" target="_blank">Download file</a> </td>
+                                      <% } %>  <% a = data.cover1ImageType %>
+                                <td>  <a href="download/<%= data._id %>" class="btn colorBtn wNowrap" target="_blank">Download file  </a> </td>
                                 <td>  <a href="remove/<%= data._id %>" class="btn colorBtn wNowrap"> <i class="far fa-trash-alt"></i> </a> </td>
                             </tr>
                         <% }) %>                 <!--  E n d    o f    f o r E a ch    l o o p   -->

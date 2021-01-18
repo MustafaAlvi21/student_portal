@@ -26,14 +26,14 @@ router.get('/my-profile', ensureAuthenticated, userRoleAuth, (req, res)=>{
                 console.log('profileCompleted' +profileCompleted)
                 console.log(data[0].gender)
                 return res.render('my_settings', {
-                    title: 'PM-Hunarmand-Portal - My Settings',
+                    title: 'Student Portal - My Settings',
                     data: data,
                     profileCompleted: profileCompleted,
                     loginUser: req.user 
                 })
             } else {
                 return res.render('my_settings', {
-                    title: 'PM-Hunarmand-Portal - My Settings',
+                    title: 'Student Portal - My Settings',
                     data: data,
                     loginUser: undefined 
                 })
@@ -57,9 +57,9 @@ router.post('/my-profile', ensureAuthenticated, userRoleAuth, async (req, res)=>
         userDataModel.find({_id:id}, (err, data)=>{
             if (err) throw err;
             if (data){
-                res.render('my_settings', { title : 'PM-Hunarmand-Portal - My Profile Settings', data: data, errors, loginUser: req.user} )
+                res.render('my_settings', { title : 'Student Portal - My Profile Settings', data: data, errors, loginUser: req.user} )
             } else {
-                res.render('my_settings', { title : 'PM-Hunarmand-Portal - My Profile Settings', error: 'There must be server error please try again letter', loginUser: req.user} )
+                res.render('my_settings', { title : 'Student Portal - My Profile Settings', error: 'There must be server error please try again letter', loginUser: req.user} )
             }
         })
       }

@@ -12,7 +12,7 @@ module.exports= {
             if( data.length < 0 ){
                 console.log('data checkProductUpload => ' + data)
                 console.log('data working = > ' +typeof data + data.length)
-                return res.render('shopDashboard', { title: 'PM-Hunarmand-Portal - Shop Dashboard', error: 'Can not add products because your shop is not activated by Admin.', data:'', loginUser: req.user.fullname})
+                return res.render('shopDashboard', { title: 'Student Portal - Shop Dashboard', error: 'Can not add products because your shop is not activated by Admin.', data:'', loginUser: req.user.fullname})
             }
         next();
         })

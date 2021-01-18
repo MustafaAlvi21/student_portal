@@ -13,13 +13,14 @@ const { verifyProfile } = require('../middlewares/verifyProfile');
 router.get('/dashboard', ensureAuthenticated, verifyProfile, async (req, res)=> {
     user = req.user;
     data = 1
-    taskDataModel.find({studentId: req.user._id}).sort({timeStamp1: 'desc'}).exec((err, data) => {
+    taskDataModel.find({studentId: req.user._id}, 'taskName isCompleted status marks date_time cover1ImageType fileType ').sort({timeStamp1: 'desc'}).exec((err, data) => {
         if(err) throw err;
         if(data){
             console.log('dash => ' + data)
-            return res.render('dashboard', { title: 'PM-Hunarmand-Portal - Dashboard', data: data, msg: "", loginUser: req.user})
+            return res.render('dashboard', { title: 'Student Portal - Dashboard', data: data, msg: "", loginUser: req.user})
+            // return res.json({ title: 'Student Portal - Dashboard', data: data, msg: "", loginUser: req.user})
         } else {
-            return res.render('dashboard', { title: 'PM-Hunarmand-Portal - Dashboard', data: undefined, msg: "Something is wrong, can't find anything" , loginUser: req.user})
+            return res.render('dashboard', { title: 'Student Portal - Dashboard', data: undefined, msg: "Something is wrong, can't find anything" , loginUser: req.user})
         }
     })
     // res.render('task', )
@@ -69,7 +70,7 @@ console.log(req.body.isCompleted)
           const newBook = await book.save()
           req.flash('success_msg', 'Uploaded successfully');
           res.redirect('/dashboard');
-        //   res.render('dashboard', { title: 'PM-Hunarmand-Portal - Dashboard', success_msg:"Uploaded successfully",  loginUser: req.user.fullname, });        
+        //   res.render('dashboard', { title: 'Student Portal - Dashboard', success_msg:"Uploaded successfully",  loginUser: req.user.fullname, });        
         } catch(error) {
           console.log(error)
           req.flash('error', 'There is an error, please try again.')
@@ -101,7 +102,23 @@ router.get('/view-file/:fileId', async (req, res) => {
         if(data){
             console.log('view data = ' + data)
         }
-        res.render('view_file', {title: 'PM-Hunarmand-Portal - View file', data: data,  loginUser: req.user, layout: 'taskViewLayout'})
+        res.render('view_file', {title: 'Student Portal - View file', data: data,  loginUser: req.user, layout: 'taskViewLayout'})
+    })
+})
+
+
+/*  ---------------------------------------------  */
+/*               download task file                */
+/*  ---------------------------------------------  */
+router.get('/download/:fileId', async (req, res) => {
+    fileId = req.params.fileId
+
+    await taskDataModel.find({_id: fileId}, (err, data) => {
+        if(err) throw err;
+        if(data){
+            console.log('view data = ' + data)
+        }
+        res.render('download', {title: 'Student Portal - View file', data: data,  loginUser: req.user, layout: 'taskViewLayout'})
     })
 })
 
@@ -121,7 +138,7 @@ router.get('/remove/:fileId', ensureAuthenticated, verifyProfile, function(req, 
           req.flash('success_msg', 'Removed successfully');
           res.redirect('/dashboard');
       }
-      // res.render('view_file', {title: 'PM-Hunarmand-Portal - View file',success_msg: 'Removed successfully', data: data,  loginUser: req.user.fullname, layout: 'taskViewLayout'})
+      // res.render('view_file', {title: 'Student Portal - View file',success_msg: 'Removed successfully', data: data,  loginUser: req.user.fullname, layout: 'taskViewLayout'})
     })
 })
 

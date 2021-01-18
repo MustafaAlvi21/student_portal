@@ -17,12 +17,12 @@ const { u_loginPage } = require('../config/U_stopLogin')
 router.get('/login', u_loginPage, (req, res)=>{
   if (req.user){
       return res.render('login', {
-        title: 'PM-Hunarmand-Portal - Sign-in',
+        title: 'Student Portal - Sign-in',
         loginUser: req.user
       })     
   } else {
         return res.render('login', {
-          title: 'PM-Hunarmand-Portal - Sign-in',
+          title: 'Student Portal - Sign-in',
           loginUser: undefined 
         })
     }
@@ -44,7 +44,7 @@ router.post('/login', u_loginPage, (req, res, next) => {
 //     let id = req.params.id;
 //     userDataModel.findByIdAndUpdate( id, {verified: 'true'}, function(err, data){
 //       res.render('verify', {
-//           title: 'PM-Hunarmand-Portal - Verify',
+//           title: 'Student Portal - Verify',
 //           msg: 'Account verified!!!',
 //           loginUser: undefined, 
 //       })
@@ -56,7 +56,7 @@ router.post('/login', u_loginPage, (req, res, next) => {
 /*  ---------------------------------------------  */
 router.get('/forget-password', u_loginPage, function(req, res){
     return res.render('forgetPassword', {
-        title: 'PM-Hunarmand-Portal - Forget Password',
+        title: 'Student Portal - Forget Password',
         msg: '',
         loginUser: undefined,
     })
@@ -110,9 +110,9 @@ router.post('/forget-password', u_loginPage, function(req, res){
       main().catch(console.error);
       // ====================================
       
-      return res.render('login', { title: 'PM-Hunarmand-Portal - Forget Password', success_msg:'Reset password link is emailed...', loginUser: undefined, })
+      return res.render('login', { title: 'Student Portal - Forget Password', success_msg:'Reset password link is emailed...', loginUser: undefined, })
       } else {
-        return res.render('forgetPassword', { title: 'PM-Hunarmand-Portal - Forget Password', error:'Invalid email', loginUser: undefined, })          
+        return res.render('forgetPassword', { title: 'Student Portal - Forget Password', error:'Invalid email', loginUser: undefined, })          
       }
     })
   })
@@ -137,12 +137,12 @@ function resetPassword(){
         console.log(data.resetPasswordExpiry)
         if(typeof data.resetPasswordExpiry != 'undefined' && data.resetPasswordExpiry != null && parseInt(data.resetPasswordExpiry) > time){
           console.log('access 1')
-          res.render('newPassword', {title : 'PM-Hunarmand-Portal - New Password', id: id, loginUser: undefined, })
+          res.render('newPassword', {title : 'Student Portal - New Password', id: id, loginUser: undefined, })
         } else {
-          res.render('newPasswordLinkExpired', {title : 'PM-Hunarmand-Portal - New Password', id: id, loginUser: undefined, })
+          res.render('newPasswordLinkExpired', {title : 'Student Portal - New Password', id: id, loginUser: undefined, })
         }
       } else {
-        res.render('newPasswordLinkExpired', {title : 'PM-Hunarmand-Portal - New Password', id: id, loginUser: undefined, })
+        res.render('newPasswordLinkExpired', {title : 'Student Portal - New Password', id: id, loginUser: undefined, })
       }
     })
 
@@ -170,7 +170,7 @@ userDataModel.findOne({_id: id}, {_id: 1}, (err, data) => {
       resetPasswordExpiry: '0.00000001'
     }).exec((err, data) => {
        return res.render('login', {
-        title: 'PM-Hunarmand-Portal - New Password',
+        title: 'Student Portal - New Password',
       msg: 'Password updated successfully!!!',
       loginUser: undefined,
       success_msg: "Password updated"
@@ -194,7 +194,7 @@ userDataModel.findOne({_id: id}, {_id: 1}, (err, data) => {
 
 router.get('/register', u_loginPage, (req, res)=>{
     return res.render('register', {
-        title: 'PM-Hunarmand-Portal - Sign Up',
+        title: 'Student Portal - Sign Up',
         msg:'',
         loginUser:undefined,
     })
@@ -226,13 +226,13 @@ router.post('/register', u_loginPage, (req, res)=>{
       }
 
       if(errors.length > 0) {
-        res.render('register', { title : 'PM-Hunarmand-Portal - Sign Up', errors, fullname, email, password,loginUser:undefined,  } )
+        res.render('register', { title : 'Student Portal - Sign Up', errors, fullname, email, password,loginUser:undefined,  } )
       } else {
         userDataModel.findOne({email : req.body.email}).then( data => {
             if (data) {
               //   U s e r   o r   E m a i l   i s   e x i s t 
             errors.push({ msg : 'Email is already registered'});
-            res.render('register', { title : 'PM-Hunarmand-Portal - Register', errors, fullname, email, password, loginUser:undefined,} )   
+            res.render('register', { title : 'Student Portal - Register', errors, fullname, email, password, loginUser:undefined,} )   
             } else {
                 const user = new userDataModel({
                     fullname : req.body.name ,

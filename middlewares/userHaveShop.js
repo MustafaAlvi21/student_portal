@@ -9,7 +9,7 @@ module.exports = {
             if (err) throw err;
             if (data.length >= 1){
                 console.log(data.length)
-                return res.render('sell_with_us', { title: 'PM-Hunarmand-Portal - Sell With Us', error: 'Can not open more than one shop.', loginUser: req.user.fullname, })
+                return res.render('sell_with_us', { title: 'Student Portal - Sell With Us', error: 'Can not open more than one shop.', loginUser: req.user.fullname, })
             } 
             next();
        })

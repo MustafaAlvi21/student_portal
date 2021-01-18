@@ -21,11 +21,11 @@ module.exports = {
               },   
             });
             const userId = data._id;
-            // const url = 'https://PM-Hunarmand-Portal.herokuapp.com/verify'
+            // const url = 'https://Student Portal.herokuapp.com/verify'
             const url = 'http://localhost:4000/verify'
             // send mail with defined transport object
             let info = await transporter.sendMail({
-              from: '"PM-Hunarmand-Portal 👻" <foo@example.com>', // sender address
+              from: '"Student Portal 👻" <foo@example.com>', // sender address
               to: req.body.email, // list of receivers
               subject: "Please confirm your Email account", // Subject line
               text: "Hello world 123?", // plain text body
@@ -37,7 +37,7 @@ module.exports = {
       
             main().catch(console.error);
       
-            return res.render('login', { title: 'PM-Hunarmand-Portal - Login', error: 'Verify your email, we have send you verification email.', loginUser: undefined, })
+            return res.render('login', { title: 'Student Portal - Login', error: 'Verify your email, we have send you verification email.', loginUser: undefined, })
           }
         next();
         })

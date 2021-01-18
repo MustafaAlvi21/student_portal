@@ -18,12 +18,12 @@ if(req.user){
         if (err) throw err;
         if (data){
             if(req.user){
-                res.render('admin_userDashboard', { title: 'PM-Hunarmand-Portal - Users', data: data, loginUser: req.user })
+                res.render('admin_userDashboard', { title: 'Student Portal - Users', data: data, loginUser: req.user })
             }  else {
-                res.render('admin_userDashboard', { title: 'PM-Hunarmand-Portal - Admin Users', data: data, loginUser: undefined })
+                res.render('admin_userDashboard', { title: 'Student Portal - Admin Users', data: data, loginUser: undefined })
             }
         } else {
-            res.render('admin_userDashboard', { title: 'PM-Hunarmand-Portal - Admin Users', data: undefined, })
+            res.render('admin_userDashboard', { title: 'Student Portal - Admin Users', data: undefined, })
         }
     })
 })
@@ -32,14 +32,15 @@ if(req.user){
 /*        Admin View All Task Of User        */
 /*    -----------------------------------    */
 router.get('/view-task/:id/:userName', ensureAuthenticated, async (req, res)=> {
-    user = req.params.id;
-    taskDataModel.find({studentId: user}).sort({timeStamp1: 'desc'}).exec((err, data) => {
+    user = req.params.id;        
+    taskDataModel.find({studentId: user}, 'taskName isCompleted status marks date_time fileType').sort({timeStamp1: 'desc'}).exec((err, data) => {
         if(err) throw err;
         if(data){
             console.log('dash => ' + data)                                                            //userId means student id
-            return res.render('admin_userView', { title: 'PM-Hunarmand-Portal - Dashboard', data: data, userId: user, userName: req.params.userName, msg: "", loginUser: req.user})
+            return res.render('admin_userView', { title: 'Student Portal - Dashboard', data: data, userId: user, userName: req.params.userName, msg: "", loginUser: req.user})
+            // return res.json({data: data, userId: user, userName: req.params.userName, msg: "", loginUser: req.user})
         } else {
-            return res.render('admin_userView', { title: 'PM-Hunarmand-Portal - Dashboard', data: undefined, msg: "Something is wrong, can't find anything" , loginUser: req.user})
+            return res.render('admin_userView', { title: 'Student Portal - Dashboard', data: undefined, msg: "Something is wrong, can't find anything" , loginUser: req.user})
         }
     })
     // res.render('task', )
@@ -81,9 +82,9 @@ router.post('/view-task/update-status/:id/:userId/:userName', ensureAuthenticate
 //         if(data){
 //             console.log('dash => ' + data)
 //             return res.json('data found')                                                            //userId means student id
-//             // return res.render('admin_userView', { title: 'PM-Hunarmand-Portal - Dashboard', data: data, userId: user, userName: req.params.userName, msg: "", loginUser: req.user})
+//             // return res.render('admin_userView', { title: 'Student Portal - Dashboard', data: data, userId: user, userName: req.params.userName, msg: "", loginUser: req.user})
 //         } else {
-//             return res.render('admin_userView', { title: 'PM-Hunarmand-Portal - Dashboard', data: undefined, msg: "Something is wrong, can't find anything" , loginUser: req.user})
+//             return res.render('admin_userView', { title: 'Student Portal - Dashboard', data: undefined, msg: "Something is wrong, can't find anything" , loginUser: req.user})
 //         }
 //     })
 //     // res.render('task', )

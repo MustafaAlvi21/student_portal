@@ -16,7 +16,7 @@
     </button>
     <a class="navbar-brand navColor p1 mr-0 logo" style="font-weight: bold;" href="/">Student Portal</a>
     <% if(loginUser){ %>
-      <div class="p1 res_icon lg_icon" style="color: #EBEBEB;">
+      <div class="p1 res_icon lg_icon" style="color: #EBEBEB; z-index: 100;">
         <% if (loginUser.banner1) { %> 
           <img src="<%= loginUser.banner1Path %>" alt="dp" style="border-radius: 5px; max-width: 30px; max-height: 40px;">
           <% } else { %>
@@ -25,7 +25,7 @@
             <% } %>
 
         <% } else { %>
-          <div class="p1 res_icon lg_icon"  style="z-index: 5;"><a href="/login" class="text-center">
+          <div class="p1 res_icon lg_icon"  style="z-index: 100;"><a href="/login" class="text-center">
           <div style="font-size: 22px;line-height: 1;"><i class="fas fa-user-plus"></i></div>
           <small> 
             Register/login

@@ -44,7 +44,7 @@ router.get('/',  (req, res)=>{
 //           },   
 //         });
 
-//         // const url = 'https://PM-Hunarmand-Portal.herokuapp.com/new-password'
+//         // const url = 'https://Student Portal.herokuapp.com/new-password'
 //         const url = 'http://localhost:4000/new-password'
 //         let info = await transporter.sendMail({
 //           from: req.body.name + ' ' + req.body.email, // sender address
